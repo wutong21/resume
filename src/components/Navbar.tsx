@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
 import { useTheme } from '@/components/theme-provider';
-import { Sun, Moon, Menu, X, Code2 } from 'lucide-react';
+import { Sun, Moon, Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
@@ -26,97 +25,92 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { label: '首页', id: 'hero' },
-    { label: '工作经历', id: 'work-experience' },
-    { label: '项目经历', id: 'projects' },
-    { label: 'Vibe Coding', id: 'vibe-coding' },
+    { label: '首页', id: 'hero', emoji: '🏠' },
+    { label: '工作', id: 'work-experience', emoji: '💼' },
+    { label: '项目', id: 'projects', emoji: '📁' },
+    { label: 'Vibe', id: 'vibe-coding', emoji: '✨' },
   ];
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         scrolled
-          ? 'bg-background/80 backdrop-blur-md border-b shadow-sm'
+          ? 'bg-background border-b-2 border-foreground'
           : 'bg-transparent'
       }`}
+      style={{ borderWidth: scrolled ? '0 0 2px 0' : '0' }}
     >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="flex items-center space-x-2">
-          <Code2 className="h-6 w-6 text-primary" />
-          <div className="text-2xl font-mono font-bold">
-            <span className="text-primary">Tong</span>
+        <div 
+          className="flex items-center gap-2 cursor-pointer group animate-shake" 
+          onClick={() => scrollToSection('hero')}
+        >
+          <div className="neo-badge">
+            <span className="text-lg">⚡</span>
+            <span className="font-bold">TONG</span>
           </div>
         </div>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden md:flex items-center gap-2">
           {navItems.map((item) => (
-            <Button
+            <button
               key={item.id}
-              variant="ghost"
               onClick={() => scrollToSection(item.id)}
-              className="font-mono"
+              className="px-4 py-2 bg-background hover:bg-secondary hover:-translate-y-0.5 transition-all font-bold text-sm"
             >
-              {item.label}
-            </Button>
+              {item.emoji} {item.label}
+            </button>
           ))}
 
-          <Button
-            variant="ghost"
-            size="icon"
+          <div className="w-2 h-5 bg-foreground mx-2"></div>
+
+          <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            aria-label="Toggle theme"
+            className="p-2.5 bg-secondary hover:bg-primary hover:text-white transition-all"
           >
             {theme === 'dark' ? (
               <Sun className="h-5 w-5" />
             ) : (
               <Moon className="h-5 w-5" />
             )}
-          </Button>
+          </button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center space-x-2">
-          <Button
-            variant="ghost"
-            size="icon"
+        <div className="md:hidden flex items-center gap-2">
+          <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            aria-label="Toggle theme"
+            className="p-2 bg-secondary"
           >
             {theme === 'dark' ? (
               <Sun className="h-5 w-5" />
             ) : (
               <Moon className="h-5 w-5" />
             )}
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
+          </button>
+          <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
+            className="p-2 bg-primary text-white"
           >
             {mobileMenuOpen ? (
               <X className="h-5 w-5" />
             ) : (
               <Menu className="h-5 w-5" />
             )}
-          </Button>
+          </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-md border-b">
+        <div className="md:hidden bg-background border-t-2 border-foreground" style={{ borderWidth: '2px 0 0 0' }}>
           <div className="container mx-auto px-4 py-4 space-y-2">
             {navItems.map((item) => (
-              <Button
+              <button
                 key={item.id}
-                variant="ghost"
                 onClick={() => scrollToSection(item.id)}
-                className="w-full justify-start font-mono"
+                className="w-full text-left px-4 py-3 bg-background hover:bg-secondary transition-all font-bold"
               >
-                {item.label}
-              </Button>
+                {item.emoji} {item.label}
+              </button>
             ))}
           </div>
         </div>

@@ -1,15 +1,16 @@
-import { Code2 } from 'lucide-react';
-
 const Footer = () => {
   return (
-    <footer className="py-8 border-t bg-muted/30">
+    <footer className="py-10 neo-section-muted">
       <div className="container mx-auto px-4 text-center">
-        <div className="flex items-center justify-center space-x-2 mb-2">
-          <Code2 className="h-4 w-4 text-primary" />
-          <span className="font-mono font-bold text-primary">Tong</span>
+        <div className="neo-badge mb-4 inline-flex">
+          <span className="text-xl">⚡</span>
+          <span className="font-bold text-base">TONG</span>
         </div>
-        <p className="text-muted-foreground font-mono text-sm">
+        <p className="text-muted-foreground text-sm font-medium">
           © 2026 · 前端开发工程师个人主页
+        </p>
+        <p className="text-muted-foreground text-xs mt-2">
+          MADE WITH 💖 AND LOTS OF ☕
         </p>
       </div>
     </footer>

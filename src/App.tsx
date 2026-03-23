@@ -8,7 +8,7 @@ import { ThemeProvider } from './components/theme-provider';
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="theme">
+    <ThemeProvider defaultTheme="light" storageKey="theme">
       <div className="min-h-screen bg-background text-foreground">
         <Navbar />
         <Hero />
