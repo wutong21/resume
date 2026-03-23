@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Sparkles, Users, TrendingUp } from 'lucide-react';
+import { ExternalLink, Sparkles, Users, TrendingUp, Code2 } from 'lucide-react';
 
 interface VibeProject {
   id: string;
@@ -25,6 +25,16 @@ const vibeProjects: VibeProject[] = [
     stats: {
       users: '9270.7M 从业人员',
       trend: '314 个职业数据',
+    },
+  },
+  {
+    id: '2',
+    name: 'Tong - 个人简介',
+    description: '前端开发工程师个人主页，展示工作经历、项目经历和Vibe Coding项目',
+    url: 'https://wutong21.github.io/resume/',
+    tags: ['React', 'TypeScript', 'Vite'],
+    stats: {
+      trend: 'GitHub Pages',
     },
   },
 ];
@@ -54,9 +64,12 @@ const VibeCoding = () => {
               <CardHeader>
                 <div className="flex items-start justify-between">
                   <div className="space-y-2">
-                    <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                      {project.name}
-                    </CardTitle>
+                    <div className="flex items-center space-x-2">
+                      <Code2 className="h-5 w-5 text-primary" />
+                      <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                        {project.name}
+                      </CardTitle>
+                    </div>
                     <CardDescription className="text-sm">
                       {project.description}
                     </CardDescription>
